@@ -15,9 +15,9 @@
  *  Copyright: 2017
  *      Author: Pr. Olivier Gruber <olivier dot gruber at acm dot org>
  */
-package edu.uga.m2gi.sar.test00;
+package edu.uga.m2gi.tests;
 
-import edu.uga.m2gi.sar.Broker;
+import edu.uga.m2gi.implementations.BrokerImpl;
 
 /**
  * This test is to test a single connection, echoing messages of increasing
@@ -47,7 +47,7 @@ public class Test00 {
     int capacity = 64;
     int maxLength = 512;
     
-    final Broker broker = new Broker(capacity);
+    final BrokerImpl broker = new BrokerImpl(capacity);
 
     new Thread(new Runnable() {
       @Override

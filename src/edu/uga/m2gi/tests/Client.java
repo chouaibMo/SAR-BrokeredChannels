@@ -64,7 +64,7 @@ public class Client {
     }
   }
 
-  private void echo(int length) throws IOException {
+  private void echo(int length) throws Exception {
     byte[] buf = new byte[length];
     byte[] rcv = new byte[length];
     for (int i = 0; i < length; i++)
@@ -78,7 +78,7 @@ public class Client {
         System.err.println("Failed");
   }
 
-  private static void send(IChannel ch, byte buf[]) throws IOException {
+  private static void send(IChannel ch, byte buf[]) throws Exception {
     int off = 0;
     int remaining = buf.length;
     while (remaining > 0) {
@@ -90,7 +90,7 @@ public class Client {
     }
   }
 
-  private static boolean rcv(IChannel ch, byte buf[]) throws IOException {
+  private static boolean rcv(IChannel ch, byte buf[]) throws Exception {
     int off = 0;
     int remaining = buf.length;
     while (remaining > 0) {

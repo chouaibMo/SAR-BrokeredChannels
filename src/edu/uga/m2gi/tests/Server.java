@@ -19,7 +19,8 @@ package edu.uga.m2gi.tests;
 
 import edu.uga.m2gi.interfaces.IBroker;
 import edu.uga.m2gi.interfaces.IChannel;
-
+import edu.uga.m2gi.implementations.ChannelImpl;
+import edu.uga.m2gi.implementations.BrokerImpl;
 
 public class Server {
 
@@ -29,7 +30,7 @@ public class Server {
   
   Server(int port, IBroker broker) {
     this.port = port;
-    this.broker = broker;
+    this.broker = (BrokerImpl) broker;
   }
   
   
@@ -37,7 +38,7 @@ public class Server {
     byte[] buf = new byte[10];
     while (true) {
       System.out.printf("Server-%d accepting...\n",port);
-      IChannel sock = broker.accept(port);
+      IChannel sock = (ChannelImpl) broker.accept(port);
       System.out.printf("Server-%d accepted...\n",port);
       while (true) {
         int n = sock.read(buf, 0, buf.length);
