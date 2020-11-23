@@ -34,7 +34,7 @@ public class Server {
   }
   
   
-  void run() {
+  void run() throws Exception {
     byte[] buf = new byte[10];
     while (true) {
       System.out.printf("Server-%d accepting...\n",port);

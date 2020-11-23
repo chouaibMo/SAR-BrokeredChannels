@@ -58,7 +58,10 @@ public class Client {
 
     } catch (IOException ex) {
       System.out.printf("Client %d got unexpected EOF.\n", m_no);
-    } finally {
+    } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
       System.out.printf("Client %d Done.\n", m_no);
       m_channel.close();
     }

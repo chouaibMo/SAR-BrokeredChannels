@@ -62,7 +62,12 @@ public class Test00 {
       @Override
       public void run() {
         Server s = new Server(80, broker);
-        s.run();
+        try {
+			s.run();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
       }
     }, "server").start();
   }
