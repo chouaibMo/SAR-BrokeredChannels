@@ -44,8 +44,8 @@ public class Test00 {
      * the maximum length sent is larger than twice 
      * the capacity of the circular buffers.
      */
-    int capacity = 64;
-    int maxLength = 512;
+    int capacity = 512; // 64;
+    int maxLength = 64; // 512;
     
     final BrokerImpl broker = new BrokerImpl(capacity);
 

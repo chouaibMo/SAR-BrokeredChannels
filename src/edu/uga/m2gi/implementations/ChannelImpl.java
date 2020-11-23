@@ -4,7 +4,6 @@ import edu.uga.m2gi.interfaces.IChannel;
 
 public class ChannelImpl implements IChannel {
 
-    private ChannelImpl channel;
     private CircularBufferImpl circularBuf;
     private boolean closed;
     private CircularBufferImpl trashBuffer;
@@ -30,11 +29,11 @@ public class ChannelImpl implements IChannel {
 
     
     public boolean full() {
-        return channel.getBuffer().full();
+        return circularBuf.full();
     }
 
     
-    public int read(byte[] buffer, int offset, int count) throws Exception{
+    public synchronized int read(byte[] buffer, int offset, int count) throws Exception{
     	if (count == 0) return 0;
     	
     	if (count > buffer.length - offset) throw new Exception("Not enough space in buffer to read from channel");
@@ -45,7 +44,7 @@ public class ChannelImpl implements IChannel {
     	
     	int bytesRead = 0, i = offset;   	
     	while (bytesRead < count) {
-    		if (channel.empty()) {
+    		if (empty()) {
     			return -1;
     		}
     		
@@ -58,7 +57,7 @@ public class ChannelImpl implements IChannel {
     }
 
 
-    public int write(byte[] buffer, int offset, int count) throws Exception{
+    public synchronized int write(byte[] buffer, int offset, int count) throws Exception{
     	if (count == 0) return 0;
     	
     	if (count > buffer.length - offset) throw new Exception("Cannot write the desired number of bytes to the channel");
@@ -69,7 +68,7 @@ public class ChannelImpl implements IChannel {
     	
     	int bytesWritten = 0, i = offset;   	
     	while (bytesWritten < count) {
-    		if (channel.full()) {
+    		if (full()) {
     			return -1;
     		}
     		
